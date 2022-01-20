@@ -16,7 +16,6 @@ function App() {
       week: '1'
     }
   )
-   
 
   useEffect(() => {
     const seasonURL = `https://api.sportsdata.io/v3/nfl/scores/json/CurrentSeason?key=${API_KEY}`;
