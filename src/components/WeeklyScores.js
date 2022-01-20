@@ -4,6 +4,7 @@ import '../css/WeeklyScores.css';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import NFLIcon from './NFLIcon';
+import Button from 'react-bootstrap/Button';
 
 function WeeklyScores({seasonState, style}) {
 
@@ -38,7 +39,7 @@ function WeeklyScores({seasonState, style}) {
   return (
     <div className="weeklyscores" style={style}>
       <div className="weeklyscores__header">
-        <h2>Weekly Scores</h2>
+        <h2>Games</h2>
         <Dropdown className='weeklyscores__dropdown' onSelect={onDropdownSelect}>
           <Dropdown.Toggle id='dropdown-week-select' variant='outline-dark'>
             {activeType === "REG" && activeWeek}
@@ -74,25 +75,52 @@ function GameEntry({gameData}) {
     return (weekIndex[date.getDay()] + ", " + monthIndex[date.getMonth()] + " " + date.getDate() + " | " + date.toLocaleTimeString()).replace(":00 ", " ");
   }
 
+  const GameUpcoming = ({homeTeam, awayTeam, pointSpread, overUnder, channel, homeWinPct, awayWinPct, stadiumDetails}) => {
+    return (
+      <div className="game__upcoming">
+        <div className="team__pct">
+          <h5>50%</h5>
+        </div>
+
+        <div className="team__info">
+          <NFLIcon team={awayTeam} size={70} />
+          <h6>{awayTeam}</h6>
+        </div>
+
+        <div className="game__center">
+          <p>{channel}</p>
+          <p>{homeTeam} {pointSpread}</p>
+          <p>O/U {overUnder}</p>
+        </div>
+
+        <div className="team__info">
+          <NFLIcon team={homeTeam} size={70} />
+          <h6>{homeTeam}</h6>
+        </div>
+
+        <div className="team__pct">
+          <h5>50%</h5>
+        </div>
+      </div>
+    )
+
+  }
+
   return (
     <div className="gameentry">
       <h6>{convertDate()}</h6>
       <div className="gameentry__body">
-        <div className="gameentry__results">
-          <NFLIcon team={gameData.AwayTeam} size={70} />
-          <h2>{gameData.AwayTeam}</h2>
-          {!gameData.HasStarted && 
-            <h4>@</h4> }
-          {gameData.HasStarted && <div className="gameentry__information">
-            <h2>{gameData.AwayScore} - {gameData.HomeScore}</h2>
-            <p>{gameData.QuarterDescription}</p>
-          </div>}
-          <h2>{gameData.HomeTeam}</h2>
-          <NFLIcon team={gameData.HomeTeam} size={70} />
+        <GameUpcoming homeTeam={gameData.HomeTeam} 
+          awayTeam={gameData.AwayTeam} 
+          channel={gameData.Channel} 
+          pointSpread={gameData.PointSpread}
+          overUnder={gameData.OverUnder}/>
+        <div className='btn__moreinfo'>
+          <Button variant='outline-secondary' href={"/" + gameData.GameKey}>More Info</Button>
         </div>
-        <div className="gameentry__update">
+        {/* <div className="gameentry__update">
           <p>Last updated: {new Date(gameData.LastUpdated).toLocaleString()}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   )
