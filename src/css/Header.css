@@ -1,0 +1,23 @@
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  z-index: 999;
+  border-bottom: 1px solid lightgray;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.header__left > h2 {
+   margin-left: 10px;
+}
+
+.btn__login {
+  margin-right: 10px;
+}

@@ -1,0 +1,12 @@
+
+.home__body {
+  display: flex;
+  height: 2000px;
+}
+.home__scores{
+  flex: 0.6;
+}
+
+.home__news {
+  flex: 0.4;
+}
