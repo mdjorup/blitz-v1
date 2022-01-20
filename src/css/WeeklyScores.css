@@ -1,0 +1,22 @@
+.weeklyscores {
+  border-right: 1px solid lightgray
+}
+
+.weeklyscores__header {
+  display: flex;
+  padding: 20px 0 5px 20px;
+  align-items: center;
+}
+
+.weeklyscores__dropdown {
+  margin-left: 5%;
+}
+
+.dropdown__menu {
+  z-index: 900;
+}
+
+.dropdown__item {
+  font-size: small;
+
+}

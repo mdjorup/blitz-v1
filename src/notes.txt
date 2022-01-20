@@ -1,0 +1,34 @@
+Pages
+  Login
+  Register
+  Home
+    - Scores by week
+    - user info
+  Standings
+    - standings data
+    - All season scores
+  Teams (32x)
+    - All season scores for team
+  Voting
+    - Scores by week
+
+
+Current week   1
+
+index=0 4 Super Bowl -> none
+index=1 3 Conference -> none
+index=2 2 Divisional -> none
+index=3 1 Wild Card  -> TRUE
+
+Current week    2
+index=0 4 Super Bowl -> none
+index=1 3 Conference -> none
+index=2 2 Divisional -> TRUE
+index=3 1 Wild Card  -> TRUE
+
+if (4-index <= parseInt(week)){
+  return Item
+}
+
+
+  

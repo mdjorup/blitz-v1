@@ -3,19 +3,17 @@ import React from 'react';
 import '../css/Home.css';
 
 import Header from '../components/Header';
+import WeeklyScores from '../components/WeeklyScores';
 
 function Home({seasonState}) {
+
   return (
   <div className='home'>
     <Header />
     <div className="home__body">
-      <div className="home__scores">
-        <h4>{seasonState.season}</h4>
-        <h4>{seasonState.type}</h4>
-        <h4>{seasonState.week}</h4>
-      </div>
-      <div className="home__news">
-        <h4>News</h4>
+      <WeeklyScores seasonState={seasonState} style={{flex: 0.6}}/>
+      <div style={{flex: 0.4}}>
+        <h1>Right side</h1>
       </div>
     </div>
   </div>
