@@ -5,14 +5,14 @@ import '../css/Home.css';
 import Header from '../components/Header';
 import WeeklyScores from '../components/WeeklyScores';
 
-function Home({seasonState}) {
+function Home({user, seasonState}) {
 
   return (
   <div className='home'>
-    <Header />
+    <Header user={user} />
     <div className="home__body">
-      <WeeklyScores seasonState={seasonState} style={{flex: 0.6}}/>
-      <div style={{flex: 0.4}}>
+      <WeeklyScores seasonState={seasonState} style={{flex: 0.4}}/>
+      <div style={{flex: 0.6}}>
         <h1>Right side</h1>
       </div>
     </div>

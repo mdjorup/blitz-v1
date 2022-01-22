@@ -30,7 +30,7 @@ p {
   margin-right: 20px;
   margin-left: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px solid gray;
+  border-bottom: 2px solid #EEEEEE;
 }
 
 .btn__moreinfo {

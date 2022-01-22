@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import {API_KEY} from './settings.js'
+import {auth} from './firebase.js';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Home from './pages/Home.js';
+import Authentication from './pages/Authentication';
 
 
 
@@ -16,6 +19,14 @@ function App() {
       week: '1'
     }
   )
+
+  const [user, setUser] = useState(auth.currentUser);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(firebaseUser => {
+      setUser(firebaseUser);
+    })
+  })
 
   useEffect(() => {
     const seasonURL = `https://api.sportsdata.io/v3/nfl/scores/json/CurrentSeason?key=${API_KEY}`;
@@ -44,7 +55,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home seasonState={seasonState}/>}/>
+        <Route path='/' element={<Home user={user} seasonState={seasonState}/>}/>
+        <Route path='/login' element={<Authentication authType='login'/>} />
+        <Route path='/register' element={<Authentication authType='register'/>} />
       </Routes>
     </Router>
   );

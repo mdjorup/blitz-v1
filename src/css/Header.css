@@ -21,3 +21,9 @@
 .btn__login {
   margin-right: 10px;
 }
+
+.header__right {
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
+}

@@ -23,5 +23,7 @@ Data to include
   - Channel
   - % chance to win for both teams
 
+  https://firebase.google.com/docs/reference/js/auth.userinfo
+
 
   

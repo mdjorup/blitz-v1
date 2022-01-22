@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/Header.css';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 
 //icons
 import {SiBetfair} from 'react-icons/si'
@@ -7,11 +9,20 @@ import {SiBetfair} from 'react-icons/si'
 //bootstrap components
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-function Header() {
+
+function Header({user}) {
+
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      //Sign out successful
+    }).catch((error) => {
+      //error signing out
+    })
+  }
+
   return (
     
     <div className="header">
@@ -26,22 +37,20 @@ function Header() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/scores">Standings</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item>Action</NavDropdown.Item>
-                <NavDropdown.Item >Another action</NavDropdown.Item>
-                <NavDropdown.Item >Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item >Separated link</NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link href='/picks'>Make Picks</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       {/* If signed in, change this */}
-      <div className="header__left">
-        <Button className='btn__login' variant='outline-dark' href='/login'>Login</Button>
-        <Button className='btn__register' variant='dark' href='register'>Register</Button>
-      </div>
+      {user && <div className="header__right user">
+        Welcome, {user.displayName}
+        <Button style={{'margin-left': '30px'}} variant='outline-dark' onClick={handleSignOut} href='/'>Sign out</Button>
+      </div>}
+      {!user && <div className="header__right nulluser">
+        <Button className='btn__login' variant='outline-dark' href='/login'>Log In</Button>
+        <Button className='btn__register' variant='dark' href='/register'>Register</Button>
+      </div>}
 
     </div>
   );

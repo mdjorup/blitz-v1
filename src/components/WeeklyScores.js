@@ -83,18 +83,23 @@ function GameEntry({gameData}) {
         </div>
 
         <div className="team__info">
-          <NFLIcon team={awayTeam} size={70} />
+          <NFLIcon team={awayTeam} size={50} />
           <h6>{awayTeam}</h6>
         </div>
 
         <div className="game__center">
-          <p>{channel}</p>
+          {/* <p>{channel}</p>
           <p>{homeTeam} {pointSpread}</p>
-          <p>O/U {overUnder}</p>
+          <p>O/U {overUnder}</p> */}
+          {channel}
+          <br/>
+          {homeTeam} {pointSpread}
+          <br />
+          O/U {overUnder}
         </div>
 
         <div className="team__info">
-          <NFLIcon team={homeTeam} size={70} />
+          <NFLIcon team={homeTeam} size={50} />
           <h6>{homeTeam}</h6>
         </div>
 
