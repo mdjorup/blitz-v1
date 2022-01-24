@@ -8,9 +8,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Home from './pages/Home.js';
 import Authentication from './pages/Authentication';
-
-
-
+ 
 function App() {
   const [seasonState, setSeasonState] = useState(
     {

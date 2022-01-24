@@ -25,5 +25,37 @@ Data to include
 
   https://firebase.google.com/docs/reference/js/auth.userinfo
 
+DB: 
 
+0: hometeam
+1: awayteam
+
+USERS
+  Uid1:
+    scores: map
+    PICKS:
+      pick1:
+        gameID: 823904
+        selection: 0
+      pick2:
+        gameID: 233490
+        selection: 1
+      pick3:
+        gameID: 213912
+        selection: 1
+  User2
+  User3
   
+  scores = {
+    2020: {
+      1: 93,
+      2: 83,
+      3: 100,
+      ...
+    }, 
+    2021: {
+      1: 105,
+      2: 40,
+      3: 87,
+    }
+  }

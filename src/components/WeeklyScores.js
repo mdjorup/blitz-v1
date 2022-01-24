@@ -34,7 +34,7 @@ function WeeklyScores({seasonState, style}) {
 
   const allGames = weekScores.sort(function(a,b) {
     return new Date(a.DateTimeUTC) - new Date(b.DateTimeUTC);
-  }).map(entry => <GameEntry gameData={entry}/>)
+  }).map(entry => <GameEntry key={entry.GameKey} gameData={entry}/>)
 
   return (
     <div className="weeklyscores" style={style}>
