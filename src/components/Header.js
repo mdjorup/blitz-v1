@@ -36,7 +36,7 @@ function Header({user}) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/scores">Standings</Nav.Link>
+              <Nav.Link href="/standings">Standings</Nav.Link>
               <Nav.Link href='/picks'>Make Picks</Nav.Link>
             </Nav>
           </Navbar.Collapse>

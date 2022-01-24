@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Home from './pages/Home.js';
 import Authentication from './pages/Authentication';
+import NFLStandings from './pages/NFLStandings';
  
 function App() {
   const [seasonState, setSeasonState] = useState(
@@ -56,6 +57,7 @@ function App() {
         <Route path='/' element={<Home user={user} seasonState={seasonState}/>}/>
         <Route path='/login' element={<Authentication authType='login'/>} />
         <Route path='/register' element={<Authentication authType='register'/>} />
+        <Route path='/standings' element={<NFLStandings user={user} seasonState={seasonState}/> } />
       </Routes>
     </Router>
   );

@@ -26,25 +26,38 @@ Data to include
   https://firebase.google.com/docs/reference/js/auth.userinfo
 
 DB: 
+Why do i need a db?
+ - get any user's picks by week
+ - figure out win percentages for each game 
 
 0: hometeam
 1: awayteam
 
 USERS
-  Uid1:
-    scores: map
-    PICKS:
-      pick1:
-        gameID: 823904
-        selection: 0
-      pick2:
-        gameID: 233490
-        selection: 1
-      pick3:
-        gameID: 213912
-        selection: 1
-  User2
-  User3
+  uid1
+    scores = {
+      2020: {
+        1: 100,
+        2: 99
+      }, 
+      2021: {
+        1: 85,
+        2: 98
+      }
+    }
+    PICKS: 
+      2021_0
+        week: 0
+        2021010803 = {
+          team: 0
+          time: Jan 24, 2022
+        }
+      2021_1
+        week: 1
+        2021010803 = {
+          team: 1
+          time: Jan 29, 2022
+        }
   
   scores = {
     2020: {
