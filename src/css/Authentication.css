@@ -1,0 +1,40 @@
+.auth__header {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
+  padding-right: 50px;
+  padding-left: 12px;
+}
+
+.auth__header__left {
+  display: flex;
+  cursor: pointer;
+}
+
+.auth__header__left > h2 {
+  margin-left: 10px;
+}
+
+.auth__body {
+  width: 30%;
+  transform: translate(116%, 50px);
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  
+}
+
+.auth__body > h6 {
+  color: red;
+}
+
+.form__group {
+  margin-bottom: 20px;
+}
+
+.btn__container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
