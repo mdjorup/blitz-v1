@@ -37,7 +37,7 @@ function Header({user}) {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/standings">Standings</Nav.Link>
-              <Nav.Link href='/picks'>Make Picks</Nav.Link>
+              {user && <Nav.Link href='/picks'>Make Picks</Nav.Link>}
             </Nav>
           </Navbar.Collapse>
         </Container>
