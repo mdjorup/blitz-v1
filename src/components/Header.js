@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/Header.css';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 //icons
 import {SiBetfair} from 'react-icons/si'
@@ -15,12 +16,15 @@ import Button from 'react-bootstrap/Button';
 
 function Header({user}) {
 
+  const navigate = useNavigate();
+
   const handleSignOut = () => {
     signOut(auth).then(() => {
       //Sign out successful
     }).catch((error) => {
       //error signing out
     })
+    navigate('/');
   }
 
   return (
@@ -35,9 +39,9 @@ function Header({user}) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/standings">Standings</Nav.Link>
-              {user && <Nav.Link href='/picks'>Make Picks</Nav.Link>}
+              <Nav.Link onClick={() => navigate('/')}>Home</Nav.Link>
+              <Nav.Link onClick={()=> navigate('/standings')}>Standings</Nav.Link>
+              {user && <Nav.Link onClick={() => navigate('/picks')}>Make Picks</Nav.Link>}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -48,8 +52,8 @@ function Header({user}) {
         <Button style={{'margin-left': '30px'}} variant='outline-dark' onClick={handleSignOut} href='/'>Sign out</Button>
       </div>}
       {!user && <div className="header__right nulluser">
-        <Button className='btn__login' variant='outline-dark' href='/login'>Log In</Button>
-        <Button className='btn__register' variant='dark' href='/register'>Register</Button>
+        <Button className='btn__login' variant='outline-dark' onClick={()=>navigate('/login')}>Log In</Button>
+        <Button className='btn__register' variant='dark' onClick={()=>navigate('/register')}>Register</Button>
       </div>}
 
     </div>

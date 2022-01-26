@@ -72,3 +72,26 @@ USERS
       3: 87,
     }
   }
+
+  Redux notes
+
+  global state of app:
+  {
+    picks: {
+      20201923: 'home'
+      202119023: 'away'
+    }
+    user: 23u1ucmuioqwe9340cqre
+  }
+  Actions - represented as object that describes what happens
+  {type: 'UPDATE_PICKS', picks: {submitted picks}}
+  {type: 'SET_USER', user: newUser}
+
+  Reducers- the function that takes state and action as argument
+  const updatePicks = (state={}, action) => {
+    if (action.type === 'UPDATE_PICKS'){
+      return action.picks;
+    } else {
+      return state;
+    }
+  }

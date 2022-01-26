@@ -98,10 +98,10 @@ function Authentication({authType}) {
         </div>
         <div className='btn__container'>
           {authType === 'register' &&
-            <Button href='/login' variant='outline-dark'>Log In</Button>
+            <Button onClick={()=>navigate('/login')} variant='outline-dark'>Log In</Button>
           }
           {authType === 'login' &&
-            <Button href='/register' variant='outline-dark'>Register</Button>
+            <Button onClick={()=>navigate('/register')} variant='outline-dark'>Register</Button>
           }
         </div>
       </div>

@@ -9,6 +9,9 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import NFLIcon from '../components/NFLIcon';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { submitPicks } from '../actions';
 
 function GamePick({gameData, pick, handleSelection}) {
   return(
@@ -26,49 +29,52 @@ function GamePick({gameData, pick, handleSelection}) {
 
 }
 
-
-
 function Picks({user, seasonState}) {
 
   const [games, setGames] = useState([])
-  const [picks, setPicks] = useState({})
+  const picks = useSelector(state => state.picks)
   const [submitLoading, setSubmitLoading] = useState(false);
 
-
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const fetchPicks = async () => {
-    const docRef = doc(db, 'Users', user.uid, 'Picks', `${seasonState.season}_${seasonState.type}_${seasonState.week}`)
-    const docSnap = await getDoc(docRef)
-    setPicks(docSnap.data());
-  }
-
   useEffect(() => {
-    const url = `https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/2021POST/3?key=${API_KEY}`;
+    const url = `https://api.sportsdata.io/v3/nfl/scores/json/ScoresByWeek/${seasonState.season}${seasonState.type}/${seasonState.week}?key=${API_KEY}`;
     const fetchWeekScores = async () => {
       const response = await fetch(url);
       const json = await response.json();
       setGames(json);
     }
     fetchWeekScores();
-  })
+  }, [seasonState.season, seasonState.type, seasonState.week])
 
-  
   useEffect(() => {
+    const docRef = doc(db, 'Users', user.uid, 'Picks', `${seasonState.season}_${seasonState.type}_${seasonState.week}`)
+    const fetchPicks = async () => {
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()){
+        dispatch(submitPicks(docSnap.data()))
+      } else {
+        dispatch(submitPicks({}))
+      }
+    }
     fetchPicks();
-  }, [])
+  }, [seasonState.season, seasonState.type, seasonState.week, user.uid])
+
+
 
   //need to retrieve previous picks
 
   const handleSelection = (gameKey, selection) => {
     if(!picks.gameKey){
-      setPicks({...picks, [gameKey]: selection})
+      dispatch(submitPicks({...picks, [gameKey]: selection}))
     } else if(selection === 'away'){
-      setPicks({...picks, [gameKey]: 'home'})
+      dispatch(submitPicks({...picks, [gameKey]: 'home'}))
     } else if(selection === 'home'){
-      setPicks({...picks, [gameKey]: 'away'})
+      dispatch(submitPicks({...picks, [gameKey]: 'away'}))
     }
+    
     
   }
 
@@ -96,7 +102,6 @@ function Picks({user, seasonState}) {
         <br/>
         {!submitLoading && <Button variant='primary' disabled={games.length!==Object.keys(picks).length} onClick={onSubmit}>Submit</Button>}
         {submitLoading && <Spinner animation='border'/>}
-        {JSON.stringify(picks)}
       </div>
     </div>
   );
