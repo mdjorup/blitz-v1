@@ -55,11 +55,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home user={user} seasonState={seasonState}/>}/>
-        <Route path='/login' element={<Authentication authType='login'/>} />
-        <Route path='/register' element={<Authentication authType='register'/>} />
-        <Route path='/standings' element={<NFLStandings user={user} seasonState={seasonState}/> } />
-        <Route path='/picks' element={<Picks user={user} seasonState={seasonState}/>} />
+        <Route exact path='/' element={<Home user={user} seasonState={seasonState}/>}/>
+        <Route exact path='/login' element={<Authentication authType='login'/>} />
+        <Route exact path='/register' element={<Authentication authType='register'/>} />
+        <Route exact path='/standings' element={<NFLStandings user={user} seasonState={seasonState}/> } />
+        <Route exact path='/picks' element={<Picks user={user} seasonState={seasonState}/>} />
       </Routes>
     </Router>
   );

@@ -59,9 +59,9 @@ function Authentication({authType}) {
       return;
     }
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const docRef = doc(db, 'Users', userCredential.user.uid);
-        setDoc(docRef, {lastSignIn: Timestamp.now()}, {merge: true});
+        await setDoc(docRef, {lastSignIn: Timestamp.now()}, {merge: true});
         setLoading(false)
         navigate('/');
       })
